@@ -1,6 +1,8 @@
+/* eslint-disable */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* eslint-enable */
 
 body {
   font-family: 'Core C', sans-serif;
@@ -78,14 +80,14 @@ body {
 }
 @font-face {
   font-family: 'Core C';
-  src: url('/fonts/CoreC-Regular.woff2') format('woff2');
+  src: url('/fonts/CoreSansC-45Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Core C';
-  src: url('/fonts/CoreC-Bold.woff2') format('woff2');
+  src: url('/fonts/CoreSansC-65Bold.woff2') format('woff2');
   font-weight: bold;
   font-style: normal;
 }
