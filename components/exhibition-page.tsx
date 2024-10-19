@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Html, Box, Sphere, Cylinder } from '@react-three/drei'
-import { Info, Clock, Cpu, Menu, X, ChevronLeft, ChevronRight, Facebook, Instagram } from 'lucide-react'
+import { OrbitControls, Html } from '@react-three/drei'
+import { Info, Clock, Cpu, Menu, X, ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -16,24 +16,7 @@ const computerParts = [
   { name: "Motherboard", description: "Main Circuit Board" },
 ]
 
-function ComputerPart({ name }) {
-  switch (name) {
-    case "CPU":
-      return <Box args={[1, 0.1, 1]} material-color="#4a4a4a" />
-    case "GPU":
-      return <Box args={[1.5, 0.05, 0.8]} material-color="#2a2a2a" />
-    case "RAM":
-      return <Box args={[1.2, 0.05, 0.2]} material-color="#3a3a3a" />
-    case "SSD":
-      return <Box args={[0.8, 0.1, 0.5]} material-color="#5a5a5a" />
-    case "Motherboard":
-      return <Box args={[1.5, 0.05, 1.5]} material-color="#1a1a1a" />
-    default:
-      return <Sphere args={[0.5]} material-color="#6a6a6a" />
-  }
-}
-
-export default function ExhibitionPage() {
+export function ExhibitionPageComponent() {
   const [activeTab, setActiveTab] = useState('overview')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [currentPartIndex, setCurrentPartIndex] = useState(0)
@@ -51,10 +34,10 @@ export default function ExhibitionPage() {
       <header className="bg-[#1e1e1e] shadow-md sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <Image src="/CSAclub_Transparent-01.png" alt="CSA Logo" width={100} height={100} className="w-16 h-16" />
+            <Image src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/CSA_Vector-Nse3SmNOpJAvruX771X0bR9EfrI3Nn.svg" alt="CSA Logo" width={80} height={80} className="w-16 h-16" />
             <div className="flex flex-col">
               <span className="text-xl font-semibold text-gray-200">Computer Science and Automation Club</span>
-              <span className="text-sm text-gray-400">Badji Mokhtar University, Annaba.</span>
+              <span className="text-sm text-gray-400">Badji Mokhtar University, Annaba</span>
             </div>
           </div>
           <h1 className="text-2xl font-bold text-gray-100 hidden md:block">Computer Parts Showcase</h1>
@@ -71,9 +54,9 @@ export default function ExhibitionPage() {
               className="bg-[#2a2a2a] p-4 md:hidden"
             >
               <ul className="space-y-2">
-                <li><a href="#model" className="block py-2 px-4 hover:bg-[#3a3a3a] rounded transition duration-300" onClick={() => setIsMenuOpen(false)}>3D Model</a></li>
-                <li><a href="#info" className="block py-2 px-4 hover:bg-[#3a3a3a] rounded transition duration-300" onClick={() => setIsMenuOpen(false)}>Information</a></li>
-                <li><a href="#featured" className="block py-2 px-4 hover:bg-[#3a3a3a] rounded transition duration-300" onClick={() => setIsMenuOpen(false)}>Featured Parts</a></li>
+                <li><a href="#model" className="block py-2 px-4 hover:bg-[#3a3a3a] rounded" onClick={() => setIsMenuOpen(false)}>3D Model</a></li>
+                <li><a href="#info" className="block py-2 px-4 hover:bg-[#3a3a3a] rounded" onClick={() => setIsMenuOpen(false)}>Information</a></li>
+                <li><a href="#featured" className="block py-2 px-4 hover:bg-[#3a3a3a] rounded" onClick={() => setIsMenuOpen(false)}>Featured Parts</a></li>
               </ul>
             </motion.nav>
           )}
@@ -90,7 +73,15 @@ export default function ExhibitionPage() {
               <ambientLight intensity={0.5} />
               <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
               <pointLight position={[-10, -10, -10]} />
-              <ComputerPart name={computerParts[currentPartIndex].name} />
+              <mesh>
+                <boxGeometry args={[1, 1, 1]} />
+                <meshStandardMaterial color="#0A7CC9" />
+                <Html position={[0, 1.2, 0]}>
+                  <div className="bg-black bg-opacity-50 text-white p-2 rounded">
+                    Computer Part
+                  </div>
+                </Html>
+              </mesh>
               <OrbitControls />
             </Canvas>
           </div>
@@ -103,15 +94,15 @@ export default function ExhibitionPage() {
             <h2 className="text-3xl font-bold text-gray-100 mb-4">Computer Part Information</h2>
             <Tabs value={activeTab} onValueChange={setActiveTab}>
               <TabsList className="grid w-full grid-cols-3 mb-4 bg-[#2a2a2a]">
-                <TabsTrigger value="overview" className="flex items-center justify-center data-[state=active]:bg-[#3a3a3a] data-[state=active]:text-white transition duration-300">
+                <TabsTrigger value="overview" className="flex items-center justify-center data-[state=active]:bg-[#3a3a3a] data-[state=active]:text-white">
                   <Info className="w-4 h-4 mr-2" />
                   Overview
                 </TabsTrigger>
-                <TabsTrigger value="history" className="flex items-center justify-center data-[state=active]:bg-[#3a3a3a] data-[state=active]:text-white transition duration-300">
+                <TabsTrigger value="history" className="flex items-center justify-center data-[state=active]:bg-[#3a3a3a] data-[state=active]:text-white">
                   <Clock className="w-4 h-4 mr-2" />
                   History
                 </TabsTrigger>
-                <TabsTrigger value="specifications" className="flex items-center justify-center data-[state=active]:bg-[#3a3a3a] data-[state=active]:text-white transition duration-300">
+                <TabsTrigger value="specifications" className="flex items-center justify-center data-[state=active]:bg-[#3a3a3a] data-[state=active]:text-white">
                   <Cpu className="w-4 h-4 mr-2" />
                   Specifications
                 </TabsTrigger>
@@ -127,33 +118,32 @@ export default function ExhibitionPage() {
                 </ul>
               </TabsContent>
               <TabsContent value="history" className="text-gray-300">
-                <section className="mb-12" id="history" aria-labelledby="timeline">
-                  <h2 id="timeline" className="text-3xl font-bold mb-4 text-center">Evolution of CPU</h2>
-                  <div className="space-y-4">
-                    {[
-                      { year: 1971, event: "Intel 4004: First commercially available microprocessor", details: "The 4-bit CPU had 2,300 transistors and ran at 740 kHz." },
-                      { year: 1978, event: "Intel 8086: Introduction of x86 architecture", details: "This 16-bit processor became the foundation for modern PC architecture." },
-                      { year: 1993, event: "Intel Pentium: Superscalar architecture", details: "Introduced parallel execution of instructions, significantly boosting performance." },
-                      { year: 2005, event: "AMD Athlon 64 X2: First x86 dual-core processor", details: "Marked the beginning of multi-core processors for consumer PCs." },
-                      { year: 2017, event: "AMD Ryzen: High core count consumer CPUs", details: "Brought 8-core, 16-thread processors to mainstream consumers." }
-                    ].map((milestone, index) => (
-                      <motion.div 
-                        key={index} 
-                        className="flex items-center"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                      >
-                        <div className="flex-shrink-0 w-24 font-bold text-blue-400">{milestone.year}</div>
-                        <div className="flex-grow border-t border-gray-700 transition-colors duration-300"></div>
-                        <div className="flex-shrink-0 w-3/4 pl-4">
-                          <h3 className="font-semibold">{milestone.event}</h3>
-                          <p className="text-sm text-gray-400">{milestone.details}</p>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </section>
+                <ul className="space-y-4">
+                  <li>
+                    <strong className="text-gray-100">1970s:</strong> Initial development of the part
+                    <p className="mt-1 text-sm">Early prototypes were created, laying the foundation for future advancements.</p>
+                  </li>
+                  <li>
+                    <strong className="text-gray-100">1980s:</strong> First commercial implementation
+                    <p className="mt-1 text-sm">The technology became available for widespread use in personal computers.</p>
+                  </li>
+                  <li>
+                    <strong className="text-gray-100">1990s:</strong> Widespread adoption
+                    <p className="mt-1 text-sm">Rapid improvements in manufacturing led to increased performance and lower costs.</p>
+                  </li>
+                  <li>
+                    <strong className="text-gray-100">2000s:</strong> Significant performance improvements
+                    <p className="mt-1 text-sm">Introduction of multi-core designs and advanced manufacturing processes.</p>
+                  </li>
+                  <li>
+                    <strong className="text-gray-100">2010s:</strong> Integration and miniaturization
+                    <p className="mt-1 text-sm">Focus on energy efficiency and integration with other components.</p>
+                  </li>
+                  <li>
+                    <strong className="text-gray-100">Present:</strong> Cutting-edge advancements
+                    <p className="mt-1 text-sm">Exploration of new materials and architectures for future computing needs.</p>
+                  </li>
+                </ul>
               </TabsContent>
               <TabsContent value="specifications" className="text-gray-300">
                 <table className="w-full border-collapse">
@@ -196,7 +186,7 @@ export default function ExhibitionPage() {
             <div className="flex items-center justify-between">
               <button
                 onClick={() => setCurrentPartIndex((prevIndex) => (prevIndex - 1 + computerParts.length) % computerParts.length)}
-                className="bg-[#2a2a2a] p-2 rounded-full hover:bg-[#3a3a3a] transition duration-300"
+                className="bg-[#2a2a2a] p-2 rounded-full"
               >
                 <ChevronLeft />
               </button>
@@ -206,7 +196,7 @@ export default function ExhibitionPage() {
               </div>
               <button
                 onClick={() => setCurrentPartIndex((prevIndex) => (prevIndex + 1) % computerParts.length)}
-                className="bg-[#2a2a2a] p-2 rounded-full hover:bg-[#3a3a3a] transition duration-300"
+                className="bg-[#2a2a2a] p-2 rounded-full"
               >
                 <ChevronRight />
               </button>
@@ -217,39 +207,32 @@ export default function ExhibitionPage() {
 
       {/* Footer */}
       <footer className="bg-[#111111] text-gray-300 py-8">
-  <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-    <div>
-      <h3 className="text-xl font-semibold mb-2">Exhibition Details</h3>
-      <p className="font-semibold">Dates: November 1-3, 2024</p>
-      <p>Location: Faculty of Technology, Sidi Amar</p>
-    </div>
-    <div>
-      <h3 className="text-xl font-semibold mb-2">Quick Links</h3>
-      <ul className="space-y-1">
-        <li><a href="#model" className="hover:text-gray-100 transition duration-300">3D Model</a></li>
-        <li><a href="#info" className="hover:text-gray-100 transition duration-300">Information</a></li>
-        <li><a href="#featured" className="hover:text-gray-100 transition duration-300">Featured Parts</a></li>
-      </ul>
-    </div>
-    <div>
-      <h3 className="text-xl font-semibold mb-2">Connect With Us</h3>
-      <div className="flex items-center space-x-4 mt-2">
-        <a href="#" className="text-gray-300 hover:text-gray-100 transition duration-300">
-          <Facebook size={24} />
-        </a>
-        <a href="#" className="text-gray-300 hover:text-gray-100 transition duration-300">
-          <Instagram size={24} />
-        </a>
-      </div>
-      <button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300">
-        Register for Club
-      </button>
-    </div>
-  </div>
-  <div className="container mx-auto px-4 mt-8 pt-4 border-t border-gray-700 text-center">
-    <p>&copy; 2024 CSA, Badji Mokhtar University. All rights reserved.</p>
-  </div>
-</footer>
+        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 className="text-xl font-semibold mb-2">Exhibition Details</h3>
+            <p className="font-semibold">Date: November 1-3, 2024.</p>
+            <p>Location: Faculty of Technology, Sidi Amar.</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold mb-2">Quick Links</h3>
+            <ul className="space-y-1">
+              <li><a href="#model" className="hover:text-gray-100">3D Model</a></li>
+              <li><a href="#info" className="hover:text-gray-100">Information</a></li>
+              <li><a href="#featured" className="hover:text-gray-100">Featured Parts</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold mb-2">Connect With Us</h3>
+            <div className="flex items-center space-x-4 mt-2">
+              <Image src="/placeholder.svg?height=80&width=80" alt="QR Code" width={80} height={80} className="bg-white p-2 rounded" />
+              <span>Scan for more exhibits</span>
+            </div>
+          </div>
+        </div>
+        <div className="container mx-auto px-4 mt-8 pt-4 border-t border-gray-700 text-center">
+          <p>&copy; 2024 CSA, Badji Mokhtar University. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   )
 }
