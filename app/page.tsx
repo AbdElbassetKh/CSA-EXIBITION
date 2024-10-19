@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Html, Box, Sphere, Cylinder } from '@react-three/drei'
+import { OrbitControls, Box, Sphere } from '@react-three/drei'
 import { Info, Clock, Cpu, Menu, X, ChevronLeft, ChevronRight, Facebook, Instagram } from 'lucide-react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -16,7 +16,7 @@ const computerParts = [
   { name: "Motherboard", description: "Main Circuit Board" },
 ]
 
-function ComputerPart({ name }) {
+function ComputerPart({ name }: { name: string }) {
   switch (name) {
     case "CPU":
       return <Box args={[1, 0.1, 1]} material-color="#4a4a4a" />
@@ -234,14 +234,14 @@ export default function ExhibitionPage() {
     <div>
       <h3 className="text-xl font-semibold mb-2">Connect With Us</h3>
       <div className="flex items-center space-x-4 mt-2">
-        <a href="#" className="text-gray-300 hover:text-gray-100 transition duration-300">
+        <a href="https://www.facebook.com/CSA.Club23" className="text-gray-300 hover:text-gray-100 transition duration-300">
           <Facebook size={24} />
         </a>
-        <a href="#" className="text-gray-300 hover:text-gray-100 transition duration-300">
+        <a href="https://www.instagram.com/abdelbasset_khettabi" className="text-gray-300 hover:text-gray-100 transition duration-300">
           <Instagram size={24} />
         </a>
       </div>
-      <button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+      <button onClick={() => window.location.href = 'https://forms.gle/1ZhYyemGtbEbAwBQ9'} className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300">
         Register for Club
       </button>
     </div>
