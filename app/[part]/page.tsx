@@ -177,7 +177,7 @@ const Footer = () => (
             <Facebook size={24} />
           </a>
           <a 
-            href="https://www.instagram.com/abdelbasset_khettabi" 
+            href="https://www.instagram.com/CSA.Club23" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-gray-300 hover:text-gray-100 transition duration-300"

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ChevronRight } from 'lucide-react'
+import { ChevronRight, Facebook, Instagram } from 'lucide-react'
 
 const computerParts = [
   { name: "CPU", description: "Central Processing Unit" },
@@ -46,11 +46,47 @@ export default function ExhibitionPage() {
       </div>
     </div>
 
-      <footer className="bg-[#111111] text-gray-300 py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2024 CSA, Badji Mokhtar University. All rights reserved.</p>
+    <footer className="bg-[#111111] text-gray-300 py-8">
+    <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 className="text-xl font-semibold mb-2">Exhibition Details</h3>
+        <p className="font-semibold">Dates: November 1-3, 2024</p>
+        <p>Location: Faculty of Technology, Sidi Amar</p>
+      </div>
+      <div>
+        <h3 className="text-xl font-semibold mb-2">Connect With Us</h3>
+        <div className="flex items-center space-x-4 mt-2">
+          <a 
+            href="https://www.facebook.com/CSA.Club23" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-gray-300 hover:text-gray-100 transition duration-300"
+          >
+            <Facebook size={24} />
+          </a>
+          <a 
+            href="https://www.instagram.com/CSA.Club23" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-gray-300 hover:text-gray-100 transition duration-300"
+          >
+            <Instagram size={24} />
+          </a>
         </div>
-      </footer>
+        <a 
+          href="https://forms.gle/1ZhYyemGtbEbAwBQ9"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300"
+        >
+          Register for Club
+        </a>
+      </div>
+    </div>
+    <div className="container mx-auto px-4 mt-8 pt-4 border-t border-gray-700 text-center">
+      <p>&copy; 2024 CSA, Badji Mokhtar University. All rights reserved.</p>
+    </div>
+  </footer>
     </div>
   )
 }
