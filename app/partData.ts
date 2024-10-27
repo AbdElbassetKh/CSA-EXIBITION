@@ -66,7 +66,7 @@ export const partData = {
       },
     },
     HardDrive: {
-      name: "Hard Drive",
+      name: "HardDrive",
       description: "Solid State Drive",
       overview: "The hard drive serves as the primary storage device for a computer, where all data, applications, and the operating system are stored. It is crucial for data retrieval and overall system performance.",
       history: [
