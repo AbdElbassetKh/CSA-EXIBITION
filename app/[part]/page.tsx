@@ -6,8 +6,8 @@ import { Info, Clock, Cpu, ChevronLeft, Facebook, Instagram } from 'lucide-react
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ModelViewer } from '@/components/3d/ModelViewer'
+import { partData } from '../partData'
 
-// Define the types for our part data
 interface HistoryItem {
   year: string;
   event: string;
@@ -30,14 +30,6 @@ interface PartData {
   specifications: Specifications;
 }
 
-// Define the type for our partData object
-type PartDataRecord = Record<string, PartData>;
-
-// Import partData (assuming it's in a separate file)
-import { partData } from '../partData'
-
-const computerParts: PartDataRecord = partData
-
 const scrollToSection = (elementId: string) => {
   const element = document.getElementById(elementId)
   if (element) {
@@ -48,7 +40,6 @@ const scrollToSection = (elementId: string) => {
   }
 }
 
-// MainContent Component
 const MainContent = ({ part, isModelExpanded, setIsModelExpanded, activeTab, setActiveTab }: {
   part: PartData;
   isModelExpanded: boolean;
@@ -160,7 +151,6 @@ const MainContent = ({ part, isModelExpanded, setIsModelExpanded, activeTab, set
   </main>
 )
 
-// Footer Component
 const Footer = () => (
   <footer className="bg-[#111111] text-gray-300 py-8">
     <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -226,13 +216,12 @@ const Footer = () => (
   </footer>
 )
 
-// Main Page Component
 export default function PartPage({ params }: { params: { part?: string } }) {
   const [activeTab, setActiveTab] = useState('overview')
   const [isModelExpanded, setIsModelExpanded] = useState(false)
   
-  const partName = params?.part?.toLowerCase() || ''
-  const part = computerParts[partName as keyof typeof computerParts]
+  const partName = params?.part ? decodeURIComponent(params.part.toLowerCase()) : ''
+  const part = Object.values(partData).find(p => p.name.toLowerCase() === partName) || partData[partName as keyof typeof partData]
 
   if (!part) {
     return (
