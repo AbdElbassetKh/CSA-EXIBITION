@@ -4,11 +4,39 @@ import { useState } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Info, Clock, Cpu, ChevronLeft, Facebook, Instagram } from 'lucide-react'
 import Link from 'next/link'
-import { partData } from '../partData'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ModelViewer } from '@/components/3d/ModelViewer'
 
-const computerParts = partData
+// Define the types for our part data
+interface HistoryItem {
+  year: string;
+  event: string;
+}
+
+interface Specifications {
+  manufacturer: string;
+  model: string;
+  performance: string;
+  powerConsumption: string;
+  dimensions: string;
+  compatibility: string;
+}
+
+interface PartData {
+  name: string;
+  description: string;
+  overview: string;
+  history: HistoryItem[];
+  specifications: Specifications;
+}
+
+// Define the type for our partData object
+type PartDataRecord = Record<string, PartData>;
+
+// Import partData (assuming it's in a separate file)
+import { partData } from '../partData'
+
+const computerParts: PartDataRecord = partData
 
 const scrollToSection = (elementId: string) => {
   const element = document.getElementById(elementId)
@@ -22,7 +50,7 @@ const scrollToSection = (elementId: string) => {
 
 // MainContent Component
 const MainContent = ({ part, isModelExpanded, setIsModelExpanded, activeTab, setActiveTab }: {
-  part: any;
+  part: PartData;
   isModelExpanded: boolean;
   setIsModelExpanded: (value: boolean) => void;
   activeTab: string;
@@ -90,17 +118,10 @@ const MainContent = ({ part, isModelExpanded, setIsModelExpanded, activeTab, set
                 <TabsContent value="overview" className="text-gray-300">
                   <p>{part.description}</p>
                   <p className="mt-4">{part.overview}</p>
-                  <p className="mt-2">Key features include:</p>
-                  <ul className="list-disc list-inside mt-2 space-y-1">
-                    <li>High-speed data processing</li>
-                    <li>Energy-efficient design</li>
-                    <li>Compatibility with various systems</li>
-                    <li>Advanced thermal management</li>
-                  </ul>
                 </TabsContent>
                 <TabsContent value="history" className="text-gray-300">
                   <ul className="space-y-4">
-                    {part.history.map((item: any, index: number) => (
+                    {part.history.map((item, index) => (
                       <motion.li 
                         key={index}
                         initial={{ opacity: 0, x: -20 }}
@@ -124,7 +145,7 @@ const MainContent = ({ part, isModelExpanded, setIsModelExpanded, activeTab, set
                           transition={{ delay: index * 0.1 }}
                         >
                           <td className="py-2 font-semibold">{key.charAt(0).toUpperCase() + key.slice(1)}</td>
-                          <td className="py-2">{value as string}</td>
+                          <td className="py-2">{value}</td>
                         </motion.tr>
                       ))}
                     </tbody>
