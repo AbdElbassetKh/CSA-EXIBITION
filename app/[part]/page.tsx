@@ -6,29 +6,7 @@ import { Info, Clock, Cpu, ChevronLeft, Facebook, Instagram } from 'lucide-react
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ModelViewer } from '@/components/3d/ModelViewer'
-import { partData } from '../partData'
-
-interface HistoryItem {
-  year: string;
-  event: string;
-}
-
-interface Specifications {
-  manufacturer: string;
-  model: string;
-  performance: string;
-  powerConsumption: string;
-  dimensions: string;
-  compatibility: string;
-}
-
-interface PartData {
-  name: string;
-  description: string;
-  overview: string;
-  history: HistoryItem[];
-  specifications: Specifications;
-}
+import { partData, PartData } from '../partData'
 
 const scrollToSection = (elementId: string) => {
   const element = document.getElementById(elementId)
@@ -109,6 +87,12 @@ const MainContent = ({ part, isModelExpanded, setIsModelExpanded, activeTab, set
                 <TabsContent value="overview" className="text-gray-300">
                   <p>{part.description}</p>
                   <p className="mt-4">{part.overview}</p>
+                  <h3 className="text-xl font-semibold text-gray-100 mt-6 mb-2">Key Features:</h3>
+                  <ul className="list-disc list-inside space-y-1">
+                    {part.keyFeatures.map((feature, index) => (
+                      <li key={index}>{feature}</li>
+                    ))}
+                  </ul>
                 </TabsContent>
                 <TabsContent value="history" className="text-gray-300">
                   <ul className="space-y-4">
@@ -171,6 +155,7 @@ const Footer = () => (
             </button>
           </li>
           <li>
+            
             <button 
               onClick={() => scrollToSection('info')}
               className="hover:text-gray-100 transition duration-300 text-left"
@@ -219,7 +204,7 @@ const Footer = () => (
 export default function PartPage({ params }: { params: { part?: string } }) {
   const [activeTab, setActiveTab] = useState('overview')
   const [isModelExpanded, setIsModelExpanded] = useState(false)
-  
+
   const partName = params?.part ? decodeURIComponent(params.part.toLowerCase()) : ''
   const part = Object.values(partData).find(p => p.name.toLowerCase() === partName) || partData[partName as keyof typeof partData]
 
