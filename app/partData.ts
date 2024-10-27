@@ -28,7 +28,7 @@ export const partData = {
     gpu: {
       name: "GPU",
       description: "Graphics Processing Unit",
-      overview: "The GPU is specialized for rendering graphics and performing parallel computations.",
+      overview: "The GPU is essential for rendering images, animations, and video for display on a computer screen. It offloads graphical processing tasks from the CPU, enabling smoother performance in gaming, video editing, and graphic design applications.",
       history: [
         { year: "1981", event: "IBM PC with Monochrome Display Adapter" },
         { year: "1999", event: "NVIDIA GeForce 256: First GPU" },
@@ -65,10 +65,10 @@ export const partData = {
         compatibility: "DDR4",
       },
     },
-    ssd: {
-      name: "SSD",
+    HardDrive: {
+      name: "Hard Drive",
       description: "Solid State Drive",
-      overview: "SSDs store data persistently using flash memory, offering faster access times than traditional hard drives.",
+      overview: "The hard drive serves as the primary storage device for a computer, where all data, applications, and the operating system are stored. It is crucial for data retrieval and overall system performance.",
       history: [
         { year: "1991", event: "SanDisk Corporation creates first SSD" },
         { year: "1995", event: "M-Systems introduces Flash-based SSD" },
@@ -88,7 +88,7 @@ export const partData = {
     motherboard: {
       name: "Motherboard",
       description: "Main Circuit Board",
-      overview: "The motherboard connects all components of a computer, allowing them to communicate and work together.",
+      overview: "The motherboard is a critical component of any computing system, acting as the central hub that connects all other parts of the computer. It enables communication between the CPU, RAM, storage devices, and peripheral components, ensuring the system operates efficiently.",
       history: [
         { year: "1981", event: "IBM PC: First standardized motherboard" },
         { year: "1984", event: "IBM AT: Introduction of 16-bit ISA bus" },

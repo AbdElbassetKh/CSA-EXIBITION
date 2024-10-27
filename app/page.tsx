@@ -6,7 +6,7 @@ const computerParts = [
   { name: "CPU", description: "Central Processing Unit" },
   { name: "GPU", description: "Graphics Processing Unit" },
   { name: "RAM", description: "Random Access Memory" },
-  { name: "SSD", description: "Solid State Drive" },
+  { name: "Hard Drive", description: "Solid State Drive" },
   { name: "Motherboard", description: "Main Circuit Board" },
 ]
 
