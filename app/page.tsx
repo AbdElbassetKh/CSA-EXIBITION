@@ -11,6 +11,7 @@ const computerParts = [
   { name: "RAM", description: "Random Access Memory", icon: "💾" },
   { name: "Hard Drive", description: "Solid State Drive", icon: "💽" },
   { name: "Motherboard", description: "Main Circuit Board", icon: "🖥️" },
+  { name: "Network Card", description: "Network Interface Controller", icon: "🌐" },
 ]
 
 export default function ExhibitionPage() {
@@ -53,7 +54,7 @@ export default function ExhibitionPage() {
                 </div>
                 <p className="text-gray-400 mb-4 flex-grow">{part.description}</p>
                 <Link 
-                  href={`/${part.name.toLowerCase()}`}
+                  href={`/${part.name.toLowerCase().replace(/\s+/g, '')}`}
                   className="bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition-colors duration-300 text-center"
                 >
                   Learn More

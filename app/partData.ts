@@ -152,4 +152,30 @@ export const partData: Record<string, PartData> = {
       compatibility: "ATX, LGA 1200 socket",
     },
   },
+  networkcard: {
+    name: "Network Card",
+    description: "Network Interface Controller",
+    overview: "The Network Card enables computers to connect to networks and the internet, providing essential communication capabilities. It handles the transmission and reception of data packets between the computer and network infrastructure.",
+    keyFeatures: [
+      "High-speed network connectivity",
+      "Support for multiple network protocols",
+      "Advanced security features and encryption",
+      "Wake-on-LAN capability for remote management",
+    ],
+    history: [
+      { year: "1973", event: "First Ethernet network card developed at Xerox PARC" },
+      { year: "1983", event: "3Com releases first commercial Ethernet card" },
+      { year: "1995", event: "First 100Mbps Fast Ethernet cards" },
+      { year: "1999", event: "Gigabit Ethernet becomes available" },
+      { year: "2016", event: "10 Gigabit Ethernet cards become mainstream" },
+    ],
+    specifications: {
+      manufacturer: "Intel",
+      model: "X550-T2",
+      performance: "10 Gigabit/s",
+      powerConsumption: "12W",
+      dimensions: "167.64mm x 68.58mm",
+      compatibility: "PCIe x4",
+    },
+  },
 }
