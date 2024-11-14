@@ -94,7 +94,7 @@ export default function ExhibitionPage() {
               </a>
             </div>
             <a 
-              href="https://forms.gle/1ZhYyemGtbEbAwBQ9"
+              href="https://app.getinput.co/jYBB"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition duration-300"
